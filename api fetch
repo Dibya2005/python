@@ -1,0 +1,23 @@
+import requests
+
+url = "https://pokeapi.co/api/v2"
+
+def getpokeinfo(name):
+    url1 = f"{url}/pokemon/{name}"
+    response = requests.get(url1)
+    print(response)
+    
+    if response.status_code == 200:
+        print("Data retrieved")
+        pokedata = response.json()
+        return pokedata  # Return the data
+    else:
+        print(f"Failed to retrieve data: {response.status_code}")
+        return None
+
+pokemonname = "pikachu"
+pokemoninfo = getpokeinfo(pokemonname)
+
+if pokemoninfo:
+    print(f"{pokemoninfo['name']}") 
+    print(f"height{pokemoninfo['height']}") # Use single quotes inside f-string
